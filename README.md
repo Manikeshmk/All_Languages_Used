@@ -1,6 +1,6 @@
 # All Languages Used
 
-![GitHub stars](https://img.shields.io/github/stars/manikeshmk/all-languages-used?style=social) ![GitHub forks](https://img.shields.io/github/forks/manikeshmk/all-languages-used?style=social)
+![GitHub stars](https://img.shields.io/github/stars/Manikeshmk/All_Languages_Used?style=social) ![GitHub forks](https://img.shields.io/github/forks/Manikeshmk/All_Languages_Used?style=social)
 
 Display all programming languages used across your GitHub repositories in a beautiful SVG widget.
 
@@ -125,8 +125,8 @@ We'd love your help! Here's how to contribute:
 1. **Fork** the repository on GitHub
 2. **Clone** your fork:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/all-languages-used.git
-   cd all-languages-used
+   git clone https://github.com/YOUR_USERNAME/All_Languages_Used.git
+   cd All_Languages_Used
    ```
 
 ### Making Changes
@@ -181,8 +181,8 @@ We'd love your help! Here's how to contribute:
 ### Setup
 
 ```bash
-git clone https://github.com/manikeshmk/all-languages-used
-cd all-languages-used
+git clone https://github.com/Manikeshmk/All_Languages_Used
+cd All_Languages_Used
 npm install
 npm run dev
 ```
@@ -203,7 +203,7 @@ Visit `http://localhost:3000`
 
 If this project helped you showcase your skills, please give it a **star** ⭐ on GitHub!
 
-**⭐ [Star on GitHub](https://github.com/manikeshmk/all-languages-used)**
+**⭐ [Star on GitHub](https://github.com/Manikeshmk/All_Languages_Used)**
 
 Stars help the project grow and reach more developers who need it!
 
@@ -223,8 +223,8 @@ MIT License - See [LICENSE](LICENSE) for details
 
 ## 👨‍💻 Author
 
-Made with ❤️ by [Manikesh Kumar](https://github.com/manikeshmk)
+Made with ❤️ by [Manikesh Kumar](https://github.com/Manikeshmk)
 
 ---
 
-**Questions or Issues?** Open an issue on [GitHub Issues](https://github.com/manikeshmk/all-languages-used/issues)
+**Questions or Issues?** Open an issue on [GitHub Issues](https://github.com/Manikeshmk/All_Languages_Used/issues)
