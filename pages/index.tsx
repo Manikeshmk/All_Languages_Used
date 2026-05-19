@@ -1,4 +1,3 @@
-```tsx id="krpl2n"
 export default function Home() {
   return (
     <main
@@ -6,34 +5,34 @@ export default function Home() {
         minHeight: '100vh',
         background: '#0d1117',
         color: 'white',
+        padding: '40px',
         fontFamily: 'Arial, sans-serif',
-        padding: '40px 20px',
       }}
     >
       <div
         style={{
-          maxWidth: '900px',
+          maxWidth: '1000px',
           margin: '0 auto',
           textAlign: 'center',
         }}
       >
         <h1
           style={{
-            fontSize: '3rem',
-            marginBottom: '10px',
+            fontSize: '48px',
+            marginBottom: '20px',
           }}
         >
-          🌍 All Languages Used
+          All Languages Used
         </h1>
 
         <p
           style={{
-            fontSize: '1.2rem',
             color: '#8b949e',
             marginBottom: '40px',
+            fontSize: '18px',
           }}
         >
-          Display every programming language ever used across all your GitHub repositories.
+          Generate a GitHub languages widget for all repositories.
         </p>
 
         <div
@@ -107,4 +106,3 @@ export default function Home() {
     </main>
   );
 }
-```
