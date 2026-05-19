@@ -1,4 +1,8 @@
-export async function fetchAllRepositories(username: string) {
+export async function fetchAllRepositories(
+  username: string,
+  includePrivate: boolean = false,
+  includeArchived: boolean = false
+) {
   let page = 1;
   let repos: any[] = [];
 
