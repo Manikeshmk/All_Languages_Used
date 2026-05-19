@@ -5,26 +5,26 @@ export default function Home() {
   const [visits, setVisits] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
 
-  useEffect(() => {
-    // Track page visit
-    fetch("/api/analytics", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "visit" }),
-    })
-      .then((res) => res.json())
-      .then((data) => setVisits(data.totalVisits))
-      .catch(() => {});
-
-    // Fetch current stats
-    fetch("/api/analytics")
-      .then((res) => res.json())
-      .then((data) => {
-        setVisits(data.totalVisits);
-        setCopies(data.totalCopies);
-      })
-      .catch(() => {});
-  }, []);
+  // useEffect(() => {
+  //   // Track page visit
+  //   fetch("/api/analytics", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ action: "visit" }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setVisits(data.totalVisits))
+  //     .catch(() => {});
+  //
+  //   // Fetch current stats
+  //   fetch("/api/analytics")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setVisits(data.totalVisits);
+  //       setCopies(data.totalCopies);
+  //     })
+  //     .catch(() => {});
+  // }, []);
 
   const trackCopy = async () => {
     const text = `![All Languages](https://all-languages-used.vercel.app/api/languages?username=YOUR_USERNAME)`;
@@ -35,14 +35,14 @@ export default function Home() {
     setTimeout(() => setIsCopied(false), 2000);
 
     // Track copy action
-    fetch("/api/analytics", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "copy" }),
-    })
-      .then((res) => res.json())
-      .then((data) => setCopies(data.totalCopies))
-      .catch(() => {});
+    // fetch("/api/analytics", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ action: "copy" }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => setCopies(data.totalCopies))
+    //   .catch(() => {});
   };
 
   return (
@@ -61,6 +61,7 @@ export default function Home() {
           margin: "0 auto",
         }}
       >
+        {/* Analytics display - commented out
         <div
           style={{
             display: "flex",
@@ -81,6 +82,7 @@ export default function Home() {
             📋 Copies: <strong style={{ color: "#58a6ff" }}>{copies}</strong>
           </div>
         </div>
+        */}
 
         <h1
           style={{
