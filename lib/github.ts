@@ -11,7 +11,7 @@ export async function fetchAllRepositories(username: string) {
       throw new Error("Failed to fetch repositories");
     }
 
-    const data: any[] = await response.json();
+    const data = (await response.json()) as any[];
 
     if (data.length === 0) break;
 
@@ -36,8 +36,8 @@ export async function aggregateLanguages(
 
     if (!response.ok) continue;
 
-    const languages: Record<string, number> =
-      await response.json();
+    const languages =
+  (await response.json()) as Record<string, number>;
 
     Object.entries(languages).forEach(
       ([language, bytes]) => {
