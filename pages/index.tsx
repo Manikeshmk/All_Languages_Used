@@ -1,4 +1,49 @@
+```tsx id="krpl2n"
 export default function Home() {
+  return (
+    <main
+      style={{
+        minHeight: '100vh',
+        background: '#0d1117',
+        color: 'white',
+        fontFamily: 'Arial, sans-serif',
+        padding: '40px 20px',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '900px',
+          margin: '0 auto',
+          textAlign: 'center',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: '3rem',
+            marginBottom: '10px',
+          }}
+        >
+          🌍 All Languages Used
+        </h1>
+
+        <p
+          style={{
+            fontSize: '1.2rem',
+            color: '#8b949e',
+            marginBottom: '40px',
+          }}
+        >
+          Display every programming language ever used across all your GitHub repositories.
+        </p>
+
+        <div
+          style={{
+            background: '#161b22',
+            border: '1px solid #30363d',
+            borderRadius: '16px',
+            padding: '30px',
+            marginBottom: '40px',
+          }}
         >
           <h2 style={{ marginBottom: '20px' }}>
             Example Widget
@@ -62,3 +107,4 @@ export default function Home() {
     </main>
   );
 }
+```
