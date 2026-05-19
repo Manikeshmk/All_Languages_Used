@@ -1,13 +1,13 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { fetchAllRepositories, aggregateLanguages } from '../lib/github';
+import { fetchAllRepositories, aggregateLanguages } from '../../lib/github';
 import {
   formatLanguageStats,
   sanitizeUsername,
   getCacheTTL,
-} from '../lib/utils';
-import { generateSVG } from '../lib/svg-generator';
-import { cache, getCacheHeaders } from '../lib/cache';
-import { UserLanguages } from '../lib/types';
+} from '../../lib/utils';
+import { generateSVG } from '../../lib/svg-generator';
+import { cache, getCacheHeaders } from '../../lib/cache';
+import { UserLanguages } from '../../lib/types';
 
 /**
  * Main API handler for /api/languages
