@@ -1,0 +1,21 @@
+{
+  "env": [
+    {
+      "key": "GITHUB_TOKEN",
+      "description": "Personal Access Token from GitHub with repo scope"
+    }
+  ],
+  "functions": {
+    "api/**/*.ts": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    {
+      "src": "^/api/.*",
+      "dest": "/api",
+      "methods": ["GET"]
+    }
+  ]
+}
