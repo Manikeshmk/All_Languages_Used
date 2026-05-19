@@ -34,7 +34,6 @@ Add this single line to your GitHub profile README:
 
 ![All Languages](https://all-languages-used.vercel.app/api/languages?username=YOUR_GITHUB_USERNAME)
 ```
-
 ### Step 2: Replace Your Username
 
 Change `YOUR_GITHUB_USERNAME` to your actual GitHub username
@@ -45,6 +44,7 @@ Change `YOUR_GITHUB_USERNAME` to your actual GitHub username
 ![All Languages](https://all-languages-used.vercel.app/api/languages?username=manikeshmk)
 ```
 
+![All Languages](https://all-languages-used.vercel.app/api/languages?username=manikeshmk)
 ### Step 3: That's It!
 
 Your widget will appear in your README and automatically update as you add new projects
