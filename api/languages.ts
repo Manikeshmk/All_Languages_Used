@@ -1,7 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { fetchAllRepositories, aggregateLanguages } from '../lib/github';
-import { formatLanguageStats, sanitizeUsername, getCacheTTL } from '../lib/utils';
-import { generateSVG, generateJSON } from '../lib/svg-generator';
+import {
+  formatLanguageStats,
+  sanitizeUsername,
+  getCacheTTL,
+} from '../lib/utils';
+import { generateSVG } from '../lib/svg-generator';
 import { cache, getCacheHeaders } from '../lib/cache';
 import { UserLanguages } from '../lib/types';
 
@@ -12,13 +16,17 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ): Promise<void> {
-  // Only allow GET requests
+
+  // Allow only GET requests
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    res.status(405).json({
+      error: 'Method not allowed',
+    });
+    return;
   }
 
   try {
-    // Extract and validate query parameters
+    // Query parameters
     const {
       username,
       theme = 'dark',
@@ -31,37 +39,49 @@ export default async function handler(
       format = 'svg',
     } = req.query;
 
-    // Validate required parameter
+    // Validate username
     if (!username || typeof username !== 'string') {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         error: 'Username parameter is required',
       });
+      return;
     }
 
     const sanitizedUsername = sanitizeUsername(username);
 
-    // Validate parameters
+    // Validate theme
     if (!['light', 'dark'].includes(theme as string)) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         error: 'Invalid theme. Use "light" or "dark"',
       });
+      return;
     }
 
-    const numColumns = Math.max(1, Math.min(6, parseInt(columns as string) || 4));
+    // Parse options
+    const numColumns = Math.max(
+      1,
+      Math.min(6, parseInt(columns as string) || 4)
+    );
+
     const isCompact = compact === 'true';
     const isPrivate = include_private === 'true';
     const isArchived = include_archived === 'true';
+
     const excludedLangs = (exclude as string)
       .split(',')
       .map((l) => l.trim().toLowerCase())
       .filter(Boolean);
 
+    // Cache key
+    const cacheKey =
+      `${sanitizedUsername}:${theme}:${numColumns}:` +
+      `${isCompact}:${isPrivate}:${isArchived}`;
+
     // Check cache
-    const cacheKey = `${sanitizedUsername}:${theme}:${numColumns}:${isCompact}:${isPrivate}:${isArchived}`;
     const cachedData = cache.get(cacheKey);
-    
+
     if (cachedData) {
       const svg = generateSVG(cachedData, {
         theme: theme as 'light' | 'dark',
@@ -70,10 +90,14 @@ export default async function handler(
         title: title as string,
       });
 
-      return res
-        .status(200)
-        .set(getCacheHeaders(true))
-        .send(svg);
+      const headers = getCacheHeaders(true);
+
+      Object.entries(headers).forEach(([key, value]) => {
+        res.setHeader(key, value);
+      });
+
+      res.status(200).send(svg);
+      return;
     }
 
     // Fetch repositories
@@ -83,15 +107,17 @@ export default async function handler(
       isArchived
     );
 
+    // No repositories
     if (repositories.length === 0) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         error: `No repositories found for user "${sanitizedUsername}"`,
       });
+      return;
     }
 
     // Aggregate languages
-    const languageMap = aggregateLanguages(repositories);
+    const languageMap = await aggregateLanguages(repositories);
 
     // Filter excluded languages
     for (const excluded of excludedLangs) {
@@ -102,17 +128,19 @@ export default async function handler(
       }
     }
 
+    // No languages left
     if (languageMap.size === 0) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         error: 'No languages found after applying filters',
       });
+      return;
     }
 
-    // Format language statistics
+    // Format stats
     const languages = formatLanguageStats(languageMap);
 
-    // Create user data response
+    // User response object
     const userData: UserLanguages = {
       username: sanitizedUsername,
       totalLanguages: languages.length,
@@ -121,21 +149,25 @@ export default async function handler(
       generatedAt: new Date().toISOString(),
     };
 
-    // Cache the result
+    // Cache result
     cache.set(cacheKey, userData, getCacheTTL());
 
-    // Return based on format
+    // JSON mode
     if (format === 'json') {
-      return res
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader(
+        'Cache-Control',
+        'public, max-age=43200'
+      );
+
+      res
         .status(200)
-        .set({
-          'Content-Type': 'application/json',
-          'Cache-Control': 'public, max-age=43200',
-        })
         .send(JSON.stringify(userData, null, 2));
+
+      return;
     }
 
-    // Default: SVG format
+    // Generate SVG
     const svg = generateSVG(userData, {
       theme: theme as 'light' | 'dark',
       columns: numColumns,
@@ -143,34 +175,56 @@ export default async function handler(
       title: title as string,
     });
 
-    return res
-      .status(200)
-      .set(getCacheHeaders(false))
-      .send(svg);
+    // Cache headers
+    const headers = getCacheHeaders(false);
+
+    Object.entries(headers).forEach(([key, value]) => {
+      res.setHeader(key, value);
+    });
+
+    // SVG content type
+    res.setHeader('Content-Type', 'image/svg+xml');
+
+    // Send SVG
+    res.status(200).send(svg);
+
+    return;
 
   } catch (error) {
     console.error('API Error:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
+    const message =
+      error instanceof Error
+        ? error.message
+        : 'Unknown error';
 
-    // Return appropriate error response
+    // Not found
     if (message.includes('not found')) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         error: message,
       });
+
+      return;
     }
 
+    // Validation error
     if (message.includes('Invalid')) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         error: message,
       });
+
+      return;
     }
 
-    return res.status(500).json({
+    // Generic error
+    res.status(500).json({
       success: false,
-      error: 'Internal server error. Please try again later.',
+      error:
+        'Internal server error. Please try again later.',
     });
+
+    return;
   }
 }
