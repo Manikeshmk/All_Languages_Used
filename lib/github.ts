@@ -11,7 +11,7 @@ export async function fetchAllRepositories(username: string) {
       throw new Error("Failed to fetch repositories");
     }
 
-    const data = await response.json();
+    const data: any[] = await response.json();
 
     if (data.length === 0) break;
 
@@ -25,35 +25,33 @@ export async function fetchAllRepositories(username: string) {
   );
 }
 
-export async function aggregateLanguages(username: string) {
-  const repos = await fetchAllRepositories(username);
+export async function aggregateLanguages(
+  repositories: any[]
+): Promise<Map<string, number>> {
 
-  const languageMap = new Map();
+  const languageMap = new Map<string, number>();
 
-  for (const repo of repos) {
+  for (const repo of repositories) {
     const response = await fetch(repo.languages_url);
 
     if (!response.ok) continue;
 
-    const languages = await response.json();
+    const languages: Record<string, number> =
+      await response.json();
 
     Object.entries(languages).forEach(
-      ([language, bytes]: any) => {
-        if (!languageMap.has(language)) {
-          languageMap.set(language, {
-            name: language,
-            size: 0,
-            repos: 0
-          });
-        }
+      ([language, bytes]) => {
 
-        const current = languageMap.get(language);
+        const current =
+          languageMap.get(language) || 0;
 
-        current.size += bytes;
-        current.repos += 1;
+        languageMap.set(
+          language,
+          current + Number(bytes)
+        );
       }
     );
   }
 
-  return Array.from(languageMap.values());
+  return languageMap;
 }
