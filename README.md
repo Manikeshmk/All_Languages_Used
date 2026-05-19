@@ -490,4 +490,4 @@ If this project helped you, please consider giving it a ⭐
 
 ---
 
-**Made with ❤️ by [Your Name](https://github.com/YOUR_USERNAME)**
+**Made with ❤️ by [MANIKESH KUMAR](https://github.com/manikeshmk)**
