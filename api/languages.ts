@@ -150,7 +150,11 @@ export default async function handler(
     };
 
     // Cache result
-    cache.set(cacheKey, userData, getCacheTTL());
+    (cache as any).set(
+  cacheKey,
+  userData,
+  getCacheTTL()
+);
 
     // JSON mode
     if (format === 'json') {
