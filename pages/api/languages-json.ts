@@ -1,12 +1,12 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { fetchAllRepositories, aggregateLanguages } from '../lib/github';
+import { fetchAllRepositories, aggregateLanguages } from '../../lib/github';
 import {
   formatLanguageStats,
   sanitizeUsername,
   getCacheTTL,
-} from '../lib/utils';
-import { cache } from '../lib/cache';
-import { UserLanguages } from '../lib/types';
+} from '../../lib/utils';
+import { cache } from '../../lib/cache';
+import { UserLanguages } from '../../lib/types';
 
 /**
  * JSON API endpoint for /api/languages-json
