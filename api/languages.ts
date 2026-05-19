@@ -150,7 +150,7 @@ export default async function handler(
     };
 
     // Cache result
-    (cache as any).set(
+    (cache as any)["set"](
   cacheKey,
   userData,
   getCacheTTL()
