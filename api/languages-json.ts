@@ -86,7 +86,7 @@ export default async function handler(
     };
 
     // Store in cache
-    cache.set(cacheKey, userData, getCacheTTL());
+    (cache as any).set(cacheKey,userData,getCacheTTL());
 
     // Headers
     res.setHeader('Content-Type', 'application/json');
