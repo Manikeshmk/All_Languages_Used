@@ -6,20 +6,19 @@ export default function Home() {
         background: '#0d1117',
         color: 'white',
         padding: '40px',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'Arial',
       }}
     >
       <div
         style={{
           maxWidth: '1000px',
           margin: '0 auto',
-          textAlign: 'center',
         }}
       >
         <h1
           style={{
             fontSize: '48px',
-            marginBottom: '20px',
+            marginBottom: '10px',
           }}
         >
           All Languages Used
@@ -29,10 +28,9 @@ export default function Home() {
           style={{
             color: '#8b949e',
             marginBottom: '40px',
-            fontSize: '18px',
           }}
         >
-          Generate a GitHub languages widget for all repositories.
+          Generate a GitHub languages widget using all your repositories.
         </p>
 
         <div
@@ -41,7 +39,7 @@ export default function Home() {
             border: '1px solid #30363d',
             borderRadius: '16px',
             padding: '30px',
-            marginBottom: '40px',
+            marginBottom: '30px',
           }}
         >
           <h2 style={{ marginBottom: '20px' }}>
@@ -65,7 +63,6 @@ export default function Home() {
             border: '1px solid #30363d',
             borderRadius: '16px',
             padding: '30px',
-            textAlign: 'left',
           }}
         >
           <h2 style={{ marginBottom: '20px' }}>
@@ -93,15 +90,6 @@ export default function Home() {
             Replace <strong>YOUR_USERNAME</strong> with your GitHub username.
           </p>
         </div>
-
-        <footer
-          style={{
-            marginTop: '50px',
-            color: '#8b949e',
-          }}
-        >
-          Built with Next.js + Vercel
-        </footer>
       </div>
     </main>
   );
