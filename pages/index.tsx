@@ -83,15 +83,51 @@ export default function Home() {
           </div>
         </div>
         */}
+        
 
-        <h1
-          style={{
-            fontSize: "48px",
-            marginBottom: "10px",
-          }}
-        >
-          All Languages Used
-        </h1>
+        <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: "10px",
+  }}
+>
+  <h1
+    style={{
+      fontSize: "48px",
+      margin: 0,
+    }}
+  >
+    All Languages Used
+  </h1>
+
+  <a
+    href="https://github.com/Manikeshmk/All_Languages_Used"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "8px",
+      background: "#161b22",
+      color: "white",
+      padding: "8px 14px",
+      borderRadius: "10px",
+      textDecoration: "none",
+      fontSize: "14px",
+      border: "1px solid #30363d",
+    }}
+  >
+    <img
+      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      alt="GitHub"
+      width="18"
+    />
+    GitHub
+  </a>
+</div>
+        
 
         <p
           style={{
