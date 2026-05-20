@@ -94,15 +94,15 @@ export default function Home() {
   }}
 >
   <h1
-    style={{
-      fontSize: "48px",
-      margin: 0,
-    }}
-  >
+  style={{
+    fontSize: "clamp(24px, 6vw, 48px)",
+    margin: 0,
+  }}
+>
     All Languages Used
   </h1>
 
-  <a
+  <div><a
     href="https://github.com/Manikeshmk/All_Languages_Used"
     target="_blank"
     rel="noopener noreferrer"
@@ -126,6 +126,9 @@ export default function Home() {
     />
     GitHub
   </a>
+  <p>⭐star the repo🌟
+    </p>
+    </div>
 </div>
         
 
@@ -170,46 +173,52 @@ export default function Home() {
         >
           <h2 style={{ marginBottom: "20px" }}>Usage</h2>
 
-          <div style={{ position: "relative" }}>
-            <pre
-              id="code"
-              style={{
-                background: "#0d1117",
-                padding: "20px",
-                borderRadius: "12px",
-                overflowX: "auto",
-                color: "#58a6ff",
-              }}
-            >
-              {`![All Languages](https://all-languages-used.vercel.app/api/languages?username=YOUR_USERNAME)`}
-            </pre>
+          <div
+  style={{
+    position: "relative",
+  }}
+>
+  <pre
+    id="code"
+    style={{
+      background: "#0d1117",
+      padding: "50px 20px 20px", // extra top padding
+      borderRadius: "12px",
+      overflowX: "auto",
+      color: "#58a6ff",
+      whiteSpace: "pre-wrap",
+      wordBreak: "break-all",
+    }}
+  >
+    {`![All Languages](https://all-languages-used.vercel.app/api/languages?username=YOUR_USERNAME)`}
+  </pre>
 
-            <button
-              onClick={trackCopy}
-              style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                background: isCopied
-                  ? "linear-gradient(135deg, #28a745, #20c997)"
-                  : "#238636",
-                color: "white",
-                border: "none",
-                padding: "8px 12px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontWeight: "bold",
-                transition: "all 0.3s ease",
-                transform: isCopied ? "scale(1.05)" : "scale(1)",
-                boxShadow: isCopied
-                  ? "0 0 15px rgba(40, 167, 69, 0.6)"
-                  : "none",
-              }}
-            >
-              {isCopied ? "✓ Copied!" : "Copy"}
-            </button>
-          </div>
-
+  <button
+    onClick={trackCopy}
+    style={{
+      position: "absolute",
+      top: "10px",
+      right: "10px",
+      zIndex: 1,
+      background: isCopied
+        ? "linear-gradient(135deg, #28a745, #20c997)"
+        : "#238636",
+      color: "white",
+      border: "none",
+      padding: "8px 12px",
+      borderRadius: "8px",
+      cursor: "pointer",
+      fontWeight: "bold",
+      transition: "all 0.3s ease",
+      transform: isCopied ? "scale(1.05)" : "scale(1)",
+      boxShadow: isCopied
+        ? "0 0 15px rgba(40, 167, 69, 0.6)"
+        : "none",
+    }}
+  >
+    {isCopied ? "✓ Copied!" : "Copy"}
+  </button>
+</div>
           <p
             style={{
               marginTop: "20px",
