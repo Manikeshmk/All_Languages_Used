@@ -1,6 +1,6 @@
 [![Repo visits](https://hits.sh/github.com/Manikeshmk/All_Languages_Used.svg?label=repo%20visits)](https://hits.sh/github.com/Manikeshmk/All_Languages_Used/)
-# All Languages Used
 ![GitHub stars](https://img.shields.io/github/stars/Manikeshmk/All_Languages_Used?style=logo&logo=github&label=⭐%20Stars) ![GitHub forks](https://img.shields.io/github/forks/Manikeshmk/All_Languages_Used?style=social)
+# All Languages Used
 
 Display all programming languages used across your GitHub repositories in a beautiful SVG widget.
 
