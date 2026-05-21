@@ -223,7 +223,7 @@ MIT License - See [LICENSE](LICENSE) for details
 
 ## 👨‍💻 Author
 
-Made with ❤️ by [Manikesh Kumar](https://github.com/Manikeshmk)
+Build with ❤️ by [Manikesh Kumar](https://github.com/Manikeshmk)
 
 ---
 
